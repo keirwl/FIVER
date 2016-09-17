@@ -2,6 +2,7 @@ module defs
     implicit none
 
     integer, parameter :: BOARD_SQ_NUM = 120
+    integer, parameter :: MAXGAMEMOVES = 2048
 
     ! pieces on board
     enum, bind(c)
@@ -36,6 +37,23 @@ module defs
         enumerator NO_SQ
     endenum
 
+    ! castling rights
+    enum, bind(c)
+        enumerator :: WKCA=1
+        enumerator :: WQCA=2
+        enumerator :: BKCA=4
+        enumerator :: BQCA=8
+    endenum
+
+    ! "undo move" type for storing history
+    type :: Undo
+        integer :: move
+        integer(1) :: castleperm
+        integer :: enpas
+        integer :: fiftymove
+        integer*8 :: poskey
+    end type Undo
+
     type :: Board
         integer, dimension(BOARD_SQ_NUM) :: pieces
 
@@ -53,6 +71,9 @@ module defs
         integer :: ply
         integer :: hisply
 
+        ! castling permissions
+        integer(1) :: castleperm
+
         ! Unique position key
         integer(8) :: poskey;
 
@@ -61,5 +82,8 @@ module defs
         integer, dimension(3) :: bigpce ! all non-pawn pieces
         integer, dimension(3) :: majpce ! major pieces
         integer, dimension(3) :: minpce ! minor pieces
+
+        ! history of all moves
+        type(Undo), dimension(MAXGAMEMOVES) :: history
     end type Board
 end module defs
