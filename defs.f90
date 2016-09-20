@@ -51,7 +51,7 @@ module defs
         integer(1) :: castleperm
         integer :: enpas
         integer :: fiftymove
-        integer*8 :: poskey
+        integer(8) :: poskey
     end type Undo
 
     type :: Board
