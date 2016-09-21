@@ -5,6 +5,7 @@ module init
     integer, dimension(64) :: Sq64ToSq120
     contains
         subroutine initSq120To64()
+            implicit none
             integer :: file = FILE_A
             integer :: rank = RANK_1
             integer :: sq = A1
@@ -24,6 +25,7 @@ module init
         end subroutine initSq120to64
 
         subroutine initAll()
+            implicit none
             call initSq120To64()
         end subroutine initAll
 end module init

@@ -85,5 +85,10 @@ module defs
 
         ! history of all moves
         type(Undo), dimension(MAXGAMEMOVES) :: history
+
+        ! piece list, in the form:
+        ! pList(wN,1) = E1
+        ! pList(wN,2) = D4
+        integer, dimension(13,10) :: pList
     end type Board
 end module defs
