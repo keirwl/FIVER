@@ -8,14 +8,14 @@ module init
             integer :: file = FILE_A
             integer :: rank = RANK_1
             integer :: sq = A1
-            integer :: sq64 = 0
+            integer :: sq64 = 1
 
             Sq120ToSq64(:) = 65
             Sq64ToSq120(:) = 120
                 
             do rank = RANK_1, RANK_8
                 do file = FILE_A, FILE_H
-                    sq = (21+(file))+((rank)*10)
+                    sq = (22+(file))+((rank)*10)
                     Sq64ToSq120(sq64) = sq
                     Sq120ToSq64(sq) = sq64
                     sq64 = sq64 + 1

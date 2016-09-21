@@ -7,16 +7,17 @@ program fiver
     call initAll()
 
     do i = 1, BOARD_SQ_NUM
-        if (modulo(i,10) == 0) then
+        if (modulo(i-1,10) == 0) then
             write(*,*)
         endif
-        write(*,"(I5)") Sq120ToSq64(i)
+        write(*,"(I5)",advance="no") Sq120ToSq64(i)
     enddo
-
+    write(*,*)
     do i = 1, 64
-        if (modulo(i,8) == 0) then
+        if (modulo(i-1,8) == 0) then
             write(*,*)
         endif
-        write(*,"(I5)") Sq64ToSq120(i)
+        write(*,"(I5)",advance="no") Sq64ToSq120(i)
     enddo
+    write(*,*)
 end program fiver
