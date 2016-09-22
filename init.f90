@@ -3,7 +3,7 @@ module init
     implicit none
     integer, dimension(BOARD_SQ_NUM) :: Sq120ToSq64
     integer, dimension(64) :: Sq64ToSq120
-    contains
+contains
         subroutine initSq120To64()
             implicit none
             integer :: file = FILE_A
@@ -16,7 +16,7 @@ module init
                 
             do rank = RANK_1, RANK_8
                 do file = FILE_A, FILE_H
-                    sq = (22+(file))+((rank)*10)
+                    sq = fr2sq(file, rank)
                     Sq64ToSq120(sq64) = sq
                     Sq120ToSq64(sq) = sq64
                     sq64 = sq64 + 1

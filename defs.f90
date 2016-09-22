@@ -1,6 +1,5 @@
 module defs
     implicit none
-
     integer, parameter :: BOARD_SQ_NUM = 120
     integer, parameter :: MAXGAMEMOVES = 2048
 
@@ -91,4 +90,11 @@ module defs
         ! pList(wN,2) = D4
         integer, dimension(13,10) :: pList
     end type Board
+contains
+    pure function fr2sq(file, rank) result(sq)
+        integer, intent(in) :: file
+        integer, intent(in) :: rank
+        integer :: sq
+        sq = (22+file)+(rank*10)
+    end function fr2sq
 end module defs
